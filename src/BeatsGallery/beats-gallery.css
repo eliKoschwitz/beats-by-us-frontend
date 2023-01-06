@@ -1,0 +1,96 @@
+.kick-pad {
+    background: rgb(235, 135, 212);
+    width: 5rem;
+    height: 5rem;
+    margin: 1rem 0.5rem;
+    cursor: pointer;
+}
+
+.kick-pad.active {
+    background: rgb(174, 19, 138);
+}
+
+.kick-track {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    justify-content: space-between;
+}
+
+.sequencer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.kick {
+    display: flex;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    margin: 0 2rem;
+}
+
+.controls button {
+    padding: 1rem;
+    border: none;
+    background: rgb(85, 82, 82);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.pad {
+    transition: all 0.5s ease;
+}
+
+.play {
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    background: rgb(85, 82, 82);
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 3rem;
+}
+
+select {
+    padding: 1rem;
+    font-size: 1rem;
+    margin-left: 1rem;
+}
+
+.tempo {
+    margin: 2rem;
+    width: 30%;
+}
+
+.tempo-slider {
+    padding: 0.2rem;
+    -webkit-appearance: none;
+    margin: 1rem 0;
+    width: 100%;
+    position: relative;
+    background: rgb(80, 80, 80);
+    cursor: pointer;
+    border-radius: 1rem;
+}
+.tempo p {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 1rem;
+}
+@keyframes playTrack {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+    }
+}
