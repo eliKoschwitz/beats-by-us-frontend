@@ -1,0 +1,20 @@
+.track {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sound-pads {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.sound-pads p {
+    text-align: center;
+}
+
+.beat-title {
+    text-align: center;
+}

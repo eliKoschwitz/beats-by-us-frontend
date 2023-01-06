@@ -1,0 +1,11 @@
+.sound-pad {
+    background: rgb(235, 135, 212);
+    width: 4rem;
+    height: 4rem;
+    margin: 0.5rem 0.5rem;
+    cursor: pointer;
+}
+
+.sound-pad.active {
+    background: rgb(174, 19, 138);
+}
