@@ -23,7 +23,7 @@ export default function Beat(props:{beat:BeatType}){
                         return(
                             <div>
                                 <p>{sound.name}</p>
-                                <SoundPads key={index} sound={sound} />
+                                <SoundPads key={index} sound={sound}/>
                             </div>
                         )})}
                 </div>

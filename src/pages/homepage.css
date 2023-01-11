@@ -36,6 +36,8 @@ hr {
     border-radius: 1rem;
     background-color: #303080;
     color: white;
+    text-decoration: unset;
+    text-transform: none;
 }
 
 .homepage-new-btn:hover {
