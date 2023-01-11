@@ -1,7 +1,8 @@
 import React from 'react';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Homepage from "./Homepage";
-import BeatsGallery from "./BeatsGallery/BeatsGallery";
+import Homepage from "./pages/Homepage";
+import BeatsGallery from "./beatsGallery/BeatsGallery";
+import BeatForm from "./beatForm/BeatForm";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
           <Routes>
               <Route path={"/"} element={<Homepage/>}/>
               <Route path={"/gallery"} element={<BeatsGallery/>}/>
+              <Route path={"/new"} element={<BeatForm/>}/>
           </Routes>
       </BrowserRouter>
     </>

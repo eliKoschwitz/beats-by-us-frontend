@@ -1,5 +1,5 @@
 import "./beat.css"
-import {BeatType} from "../BeatsGallery/BeatsGallery";
+import {BeatType} from "../beatsGallery/BeatsGallery";
 import SoundPads from "../soundPads/SoundPads";
 import axios from "axios";
 
@@ -23,7 +23,7 @@ export default function Beat(props:{beat:BeatType}){
                         return(
                             <div>
                                 <p>{sound.name}</p>
-                                <SoundPads key={index} sound={sound} />
+                                <SoundPads key={index} sound={sound}/>
                             </div>
                         )})}
                 </div>
