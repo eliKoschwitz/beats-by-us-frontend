@@ -1,5 +1,5 @@
 import "./beat.css"
-import {BeatType} from "../BeatsGallery/BeatsGallery";
+import {BeatType} from "../beatsGallery/BeatsGallery";
 import SoundPads from "../soundPads/SoundPads";
 
 export default function Beat(props:{beat:BeatType}){

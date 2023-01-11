@@ -1,5 +1,5 @@
 import "./sound-pads.css";
-import {Sound} from "../BeatsGallery/BeatsGallery";
+import {Sound} from "../beatsGallery/BeatsGallery";
 
 export default function SoundPads(props:{sound:Sound}){
 
