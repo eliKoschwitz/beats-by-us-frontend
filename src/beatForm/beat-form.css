@@ -2,4 +2,36 @@
     display: flex;
     flex-flow: column wrap;
     text-align: center;
+    padding-bottom: 2rem;
+}
+
+.new-header {
+    height: 8rem;
+}
+
+.new-input {
+    margin-bottom: 2rem;
+}
+
+.new-input input {
+    padding: 0.5rem;
+}
+
+.button {
+    padding: 1rem 2rem;
+    border: 1px solid #303080;
+    background-color: #303080;
+    color: white;
+    border-radius: 5px;
+}
+
+.button:hover {
+    cursor: pointer;
+    border: 1px solid #9066e3;
+    background-color: #9066e3;
+}
+
+.new-beat .sound-pads {
+    max-width: 50%;
+    margin: 0 auto 2rem auto;
 }

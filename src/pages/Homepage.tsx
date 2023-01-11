@@ -18,7 +18,7 @@ export default function Homepage() {
 
     return (
         <div className={"homepage"}>
-            <div className={"homepage-header"}>
+            <div className={"header"}>
                 <h1>Beats By Us</h1>
                 <Link to={"/new"} className={"homepage-new-btn"}>Neuen Beat erstellen</Link>
             </div>

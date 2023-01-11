@@ -46,7 +46,7 @@ export default function BeatForm() {
 
         console.log(index)
         const newSoundList = newBeat.soundList.map((sound, i: number) => {
-           // console.log(index, i)
+            // console.log(index, i)
 
             if (i === index) {
                 // Change the clicked pads
@@ -73,10 +73,14 @@ export default function BeatForm() {
 
     return (
         <div className={"new-beat"}>
-            <h2>Neuen Beat speichern:</h2>
+            <div className={"header new-header"}>
+                <h2>Neuen Beat erstellen</h2>
+            </div>
             <form onSubmit={onSubmit}>
-                <label htmlFor="title">Name: </label>
-                <input id={"title"} type="text" name={"name"} value={newBeat.name} onChange={onChange}/>
+                <div className={"new-input"}>
+                    <label htmlFor="title">Name: </label>
+                    <input id={"title"} type="text" name={"name"} value={newBeat.name} onChange={onChange}/>
+                </div>
                 <div className="sound-pads">
                     {newBeat.soundList.map((sound, index) => {
                         return (
@@ -87,7 +91,7 @@ export default function BeatForm() {
                         )
                     })}
                 </div>
-                <button type={"submit"}>Speichern</button>
+                <button className={"button"} type={"submit"}>Speichern</button>
             </form>
         </div>
     )
