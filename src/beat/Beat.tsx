@@ -14,9 +14,12 @@ export default function Beat(props:{beat:BeatType}){
     console.log(props.beat);
     return(
         <>
-            <h2 className={"beat-title"}>{props.beat.name}</h2>
-            <button className={"Delete"} onClick={() => deleteItem()}
-            >Delete</button>
+            <div className={"item-container"}>
+                <h2 className={"beat-title"}>{props.beat.name}</h2>
+                <button className={"button"} onClick={() => deleteItem()}
+                >Delete
+                </button>
+            </div>
             <div className="track">
                 <div className="sound-pads">
                     {props.beat.soundList.map((sound,index) => {
