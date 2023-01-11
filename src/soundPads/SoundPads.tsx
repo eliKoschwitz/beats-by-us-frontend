@@ -15,7 +15,7 @@ export default function SoundPads({ sound, soundIndex, updatePads}: {
     }, [pads]);
 
     function togglePad(index: number) {
-        const changedPads = pads.map((pad, i) => {
+        const changedPads: boolean[] = pads.map((pad, i) => {
             if (i === index) {
                 // Toggle the clicked pad
                 return !pad;

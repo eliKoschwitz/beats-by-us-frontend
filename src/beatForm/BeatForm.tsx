@@ -45,7 +45,7 @@ export default function BeatForm() {
     const getUpdatedSounds = (pads: boolean[], index: number) => {
 
         console.log(index)
-        const newSoundList = newBeat.soundList.map((sound, i: number) => {
+        const newSoundList: Sound[] = newBeat.soundList.map((sound, i: number) => {
             // console.log(index, i)
 
             if (i === index) {
