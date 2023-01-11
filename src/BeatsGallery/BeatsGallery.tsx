@@ -22,7 +22,7 @@ export default function BeatsGallery() {
     useEffect(() => {
         (async () => {
             const response = await axios.get("/api/beats");
-            console.log(response)
+            console.log(response);
             setBeats(response.data);
         })();
     }, []);

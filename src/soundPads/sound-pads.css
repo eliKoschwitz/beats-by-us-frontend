@@ -9,3 +9,7 @@
 .sound-pad.active {
     background: rgb(174, 19, 138);
 }
+
+.startButtonForBeat {
+   height: 2rem;
+}
