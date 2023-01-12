@@ -42,22 +42,9 @@ export default function BeatForm() {
         });
     }
 
-    const getUpdatedSounds = (pads: boolean[], index: number) => {
-
-        console.log(index)
-        const newSoundList: Sound[] = newBeat.soundList.map((sound, i: number) => {
-            // console.log(index, i)
-
-            if (i === index) {
-                // Change the clicked pads
-                return {
-                    ...sound, pads: pads
-                }
-            } else {
-                // The rest didn't change
-                return sound;
-            }
-        })
+    const getUpdatedSounds = (pads: boolean[], name: string) => {
+        const newSoundList: Sound[] = newBeat.soundList.map(
+            sound => sound.name === name ? {...sound, pads: pads} : sound);
 
         setNewBeat({
             ...newBeat, soundList: newSoundList
@@ -86,7 +73,7 @@ export default function BeatForm() {
                         return (
                             <div key={index}>
                                 <p>{sound.name}</p>
-                                <SoundPads sound={sound} updatePads={getUpdatedSounds} soundIndex={index}/>
+                                <SoundPads sound={sound} updatePads={getUpdatedSounds} soundName={sound.name}/>
                             </div>
                         )
                     })}
