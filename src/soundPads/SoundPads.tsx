@@ -1,23 +1,21 @@
 import "./sound-pads.css";
 import {Sound} from "../BeatsGallery/BeatsGallery";
-import React, {useState} from "react";
-
-export default function SoundPads(props:{key: number, sound:Sound}){
 
 
-    const [pads, setPads] = useState(props.sound.pads);
+export default function SoundPads(props:{key: number, sound:Sound, index:Function}){
 
-    const handleBoxClick = (index2:number) => {
-        const padsState : boolean[] = pads.map((pad, index) => index === index2 ? !pad : pad);
-        setPads(padsState);
+    const soundName: string = props.sound.name;
+
+    const handleBoxClick = (index2:number,soundName:string) => {
+        const padsState : boolean[] = props.sound.pads.map((pad, index) => index === index2 ? !pad : pad);
+        props.index(index2, soundName, padsState);
     }
 
     return(
         <div>
-            {pads.map((pad,index) => pad === true
-                ? <div key={index} className= {"pad sound-pad active b"+ index.toString()} onClick={() => handleBoxClick(index)} > </div>
-                : <div key={index} className= {"pad sound-pad b"+ index.toString()} onClick={() => handleBoxClick(index)} ></div>)}
-
+            {props.sound.pads.map((pad,index) => pad === true
+                ? <div key={index} className= {"pad sound-pad active b"+ index.toString()} onClick={() =>handleBoxClick(index, soundName)} > </div>
+                : <div key={index} className= {"pad sound-pad b"+ index.toString()} onClick={() => handleBoxClick(index, soundName)} ></div>)}
         </div>
     )
 }

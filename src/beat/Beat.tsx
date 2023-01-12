@@ -2,30 +2,61 @@ import "./beat.css"
 import {BeatType} from "../BeatsGallery/BeatsGallery";
 import SoundPads from "../soundPads/SoundPads";
 
-export default function Beat(props:{beat:BeatType}){
+export default function Beat(props:{beat:BeatType, indexBack:Function}){
+
+    const sound = require("./Kick.wav");
+    const htmlaudio: HTMLAudioElement = new Audio(sound);
+    htmlaudio.play();
+
 
     console.log(props.beat);
 
-    //const pads = document.querySelectorAll(".pad");
-    //const audio = document.querySelector(props.sound.name+"-sound")
-    let index = 0;
+    let tempoIndex = 0;
     let bpm = 40;
 
     const repeat = () => {
-        let step = index % 8;
-        //console.log(step)
-        //const activeBars = document.querySelectorAll(`.props.beat.name${step}`)
+        let step = tempoIndex % 8;
+        /*
         const activeBars = document.querySelectorAll(`.b${step}`);
         console.log(activeBars);
-        index++;
+
+         */
+
+        const sounds = props.beat.soundList;
+
+        let counter = 0;
+
+        for(const sound of sounds) {
+            console.log(counter++)
+            for(const pad of sound.pads){
+                console.log(pad)
+            }
+        }
+
+        //for(const pad of props.beat.soundList.)
+
+        //props.beat.soundList.forEach(sound => sound.pads.forEach((pad, index)=> index ===)
+
+        //tempoIndex++;
+
+        //console.log("Repeat Index",index)
     }
 
-    // video 4 Time 4:38
     function start () {
-        const interval = (60/bpm)*1000;
+        const tempo = (60/bpm)*1000;
         setInterval(() => {
             repeat();
-        },interval)
+        },tempo)
+    }
+
+    const beatName= props.beat.name;
+
+    const callBackIndex = (index:number, soundName:string, padsState :boolean[]) => {
+        props.indexBack(index, soundName, beatName, padsState);
+    }
+
+    function makeSound() {
+
     }
 
     return(
@@ -33,13 +64,14 @@ export default function Beat(props:{beat:BeatType}){
             <h2 className={"beat-title"}>{props.beat.name}</h2>
             <div className="track">
                 <div className="sound-pads">
+                    <button className={"startButtonForBeat"} onClick={makeSound} >Play</button>
                     <button className={"startButtonForBeat"} onClick={start} >start</button>
                     {props.beat.soundList.map((sound,index) => {
                         return(
                             <div>
                                 <p>{sound.name}</p>
-                                <SoundPads key={index} sound={sound} />
-                                <audio className={sound.name+"-sound"} src={"allSounds/"+sound.name+".wav"} > </audio>
+                                <SoundPads key={index} sound={sound} index={callBackIndex} />
+                                <audio className={"sound"} src={"allSounds/"+sound.name+".wav"} > </audio>
                             </div>
                         )})}
                 </div>
