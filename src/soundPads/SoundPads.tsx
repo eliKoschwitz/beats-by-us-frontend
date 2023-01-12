@@ -2,28 +2,20 @@ import "./sound-pads.css";
 import {Sound} from "../beatsGallery/BeatsGallery";
 import {useEffect, useState} from "react";
 
-export default function SoundPads({ sound, soundIndex, updatePads}: {
+export default function SoundPads({ sound, soundName, updatePads}: {
     sound: Sound,
-    soundIndex?: number,
-    updatePads?: (pads: boolean[], index: number) => void
+    soundName?: string,
+    updatePads?: (pads: boolean[], name: string) => void
 }) {
 
     const [pads, setPads] = useState<boolean[]>(sound.pads);
 
     useEffect(() => {
-        updatePads && soundIndex && updatePads(pads, soundIndex)
+        updatePads && soundName && updatePads(pads, soundName)
     }, [pads]);
 
     function togglePad(index: number) {
-        const changedPads: boolean[] = pads.map((pad, i) => {
-            if (i === index) {
-                // Toggle the clicked pad
-                return !pad;
-            } else {
-                // The rest didn't change
-                return pad;
-            }
-        });
+        const changedPads: boolean[] = pads.map((pad, i) => i === index  ? !pad : pad);
         setPads(changedPads);
     }
 
