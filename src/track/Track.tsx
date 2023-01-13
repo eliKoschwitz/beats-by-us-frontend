@@ -1,4 +1,4 @@
-import {Sound} from "../BeatsGallery/BeatsGallery";
+import {Sound} from "../beatsGallery/BeatsGallery";
 import {useEffect, useState} from "react";
 
 export default function Track ({

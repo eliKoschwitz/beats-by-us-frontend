@@ -27,7 +27,11 @@ export default function BeatsGallery() {
         })();
     }, []);
 
-    const indexBack = (padIndex : number, soundName: string, beatName : string, padsState: boolean[]) => {
+    const indexBack = (soundName: string, beatName : string, padsState: boolean[]) => {
+        console.log("gallery", padsState)
+        console.log("beatName", beatName)
+        console.log("s-name", soundName)
+
 
         const beatState:BeatType[] = beats.map(beat => beat.name === beatName ? {
             ...beat,
@@ -37,12 +41,9 @@ export default function BeatsGallery() {
             } : sound)
         } : beat);
 
-    /*
-    pads: sound.pads.map((pad, index) => index === padIndex
-                    ? !pad
-                    : pad
-     */
+
         setBeats(beatState);
+        console.log("STATE", beatState);
     }
 
     return (

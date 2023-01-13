@@ -38,14 +38,14 @@ export default function Beat(props: { beat: BeatType, indexBack: Function }) {
             i++;
 
             if (i > soundList.length - 1) {
-                //clearInterval(id);
                 i = 0;
             }
         }, tempo);
     };
 
-    const callBackIndex = (index: number, soundName: string, padsState: boolean[]) => {
-        props.indexBack(index, soundName, beatName, padsState);
+    const callBackIndex = (soundName: string, padsState: boolean[]) => {
+        props.indexBack(soundName, beatName, padsState);
+        console.log("callbackindex-F: ", padsState)
     }
 
     return (
@@ -72,7 +72,7 @@ export default function Beat(props: { beat: BeatType, indexBack: Function }) {
                         return (
                             <div key={sound.name}>
                                 <p>{sound.name}</p>
-                                <SoundPads key={index} sound={sound} index={callBackIndex}/>
+                                <SoundPads key={index} sound={sound} indexFunction={callBackIndex}/>
                                 <audio
                                     data-name={sound.name}
                                     className={"sound"}
