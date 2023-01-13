@@ -5,18 +5,16 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {MutableRefObject, useRef} from "react";
 
-
-export default function Beat(props: { beat: BeatType, indexBack: Function }) {
+export default function Beat({beat, indexBack}: { beat: BeatType, indexBack: Function }) {
 
     const navigate = useNavigate()
-
+    const beatName = beat.name;
     const soundPadsContainer: MutableRefObject<any> = useRef();
-    const beatName = props.beat.name;
     let intervalID: NodeJS.Timer;
     let bpm = 40;
 
     async function deleteItem() {
-        const response = await axios.delete("/api/beats/" + props.beat.id);
+        const response = await axios.delete("/api/beats/" + beat.id);
         console.log(response.status)
         response.status === 200 && window.location.reload();
     }
@@ -44,14 +42,13 @@ export default function Beat(props: { beat: BeatType, indexBack: Function }) {
     };
 
     const callBackIndex = (soundName: string, padsState: boolean[]) => {
-        props.indexBack(soundName, beatName, padsState);
-        console.log("callbackindex-F: ", padsState)
+        indexBack(soundName, beatName, padsState);
     }
 
     return (
         <>
             <div className={"item-container"}>
-                <h2 className={"beat-title"}>{props.beat.name}</h2>
+                <h2 className={"beat-title"}>{beat.name}</h2>
                 <button className={"button"} onClick={() => {
                     deleteItem();
                     navigate("/")
@@ -63,12 +60,12 @@ export default function Beat(props: { beat: BeatType, indexBack: Function }) {
                 <div className="sound-pads" ref={soundPadsContainer}>
                     <button
                         className={"startButtonForBeat"}
-                        onClick={() => playTrack(soundPadsContainer, props.beat.soundList, bpm)}
+                        onClick={() => playTrack(soundPadsContainer, beat.soundList, bpm)}
                     >start
                     </button>
                     <button className={"startButtonForBeat"} onClick={() => clearInterval(intervalID)}>Stop</button>
 
-                    {props.beat.soundList.map((sound, index) => {
+                    {beat.soundList.map((sound, index) => {
                         return (
                             <div key={sound.name}>
                                 <p>{sound.name}</p>

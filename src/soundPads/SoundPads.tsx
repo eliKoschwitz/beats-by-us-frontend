@@ -12,8 +12,6 @@ export default function SoundPads({sound, soundName, updatePads, indexFunction}:
         const changedPads: boolean[] = sound.pads.map((pad, i) => i === index ? !pad : pad);
         updatePads && soundName && updatePads(changedPads, soundName);
         indexFunction && indexFunction(sound.name, changedPads);
-        console.log("SP", changedPads)
-
     }
 
     return (
