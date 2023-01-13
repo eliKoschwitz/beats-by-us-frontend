@@ -1,15 +1,14 @@
 .track {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .sound-pads {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 70%;
     align-items: center;
-    margin: 2rem 0;
 }
 
 .sound-pads-container {
@@ -22,6 +21,19 @@
     text-align: center;
 }
 
+.beat-button {
+    padding: 0.5rem 1rem;
+    border: 1px solid white;
+    background-color: white;
+    border-radius: 5px;
+    margin: 0 1rem;
+}
+
+.beat-button:hover {
+    border: 1px solid #d3cbe8;
+    background-color: #d3cbe8;
+}
+
 .beat-title {
     text-align: center;
 }
@@ -30,4 +42,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.sound-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    border: 1px solid #303080;
+    border-radius: 5px;
+    padding: 0.5rem 3rem;
 }

@@ -33,9 +33,9 @@ export default function BeatsGallery() {
             .then((data) => {
                 updatedBeats = beats.map(beat => {
                         if (beat.name === data.name) {
-                            return {...beat, pads: data.pads}
+                            return data;
                         } else {
-                            return beat
+                            return beat;
                         }
                     }
                 )

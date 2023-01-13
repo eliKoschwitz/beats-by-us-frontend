@@ -26,7 +26,7 @@ export default function Homepage() {
                 <h2>Gespeicherte Beats</h2>
                 {beats.map(beat => {
                     return (
-                        <Link to={"/gallery"} className={"homepage-beat-link"} id={beat.id}>
+                        <Link key={beat.id} to={"/gallery"} className={"homepage-beat-link"} id={beat.id}>
                             <span>&#10132; </span>
                             {beat.name}
                         </Link>
