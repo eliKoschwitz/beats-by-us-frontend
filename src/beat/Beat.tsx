@@ -5,7 +5,15 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {MutableRefObject, useRef} from "react";
 
-export default function Beat({beat, indexBack}: { beat: BeatType, indexBack: Function }) {
+export default function Beat({
+     beat,
+     indexBack,
+    updateBeat
+} : {
+    beat: BeatType,
+    indexBack: Function,
+    updateBeat: (beat: BeatType) => void
+}) {
 
     const navigate = useNavigate()
     const beatName = beat.name;
@@ -13,7 +21,7 @@ export default function Beat({beat, indexBack}: { beat: BeatType, indexBack: Fun
     let intervalID: NodeJS.Timer;
     let bpm = 40;
 
-    async function deleteItem() {
+    async function deleteBeat() {
         const response = await axios.delete("/api/beats/" + beat.id);
         console.log(response.status)
         response.status === 200 && window.location.reload();
@@ -41,6 +49,7 @@ export default function Beat({beat, indexBack}: { beat: BeatType, indexBack: Fun
         }, tempo);
     };
 
+
     const callBackIndex = (soundName: string, padsState: boolean[]) => {
         indexBack(soundName, beatName, padsState);
     }
@@ -50,10 +59,15 @@ export default function Beat({beat, indexBack}: { beat: BeatType, indexBack: Fun
             <div className={"item-container"}>
                 <h2 className={"beat-title"}>{beat.name}</h2>
                 <button className={"button"} onClick={() => {
-                    deleteItem();
+                    deleteBeat();
                     navigate("/")
                 }}
                 >Delete
+                </button>
+                <button className={"button"} onClick={() => {
+                    updateBeat(beat)
+                }}
+                >Änderungen speichern
                 </button>
             </div>
             <div className="track">
