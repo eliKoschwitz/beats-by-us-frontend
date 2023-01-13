@@ -1,4 +1,3 @@
-import "./beats-gallery.css";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import Beat from "../beat/Beat";
@@ -18,21 +17,39 @@ export type Sound = {
 export default function BeatsGallery() {
 
     const [beats, setBeats] = useState<BeatType[]>([]);
-    console.log(beats)
+
     useEffect(() => {
         (async () => {
             const response = await axios.get("/api/beats");
-            console.log(response);
             setBeats(response.data);
         })();
     }, []);
 
-    const indexBack = (soundName: string, beatName : string, padsState: boolean[]) => {
+    async function updateBeat(updateBeat: BeatType) {
+        let updatedBeats: BeatType[];
 
-        const beatState:BeatType[] = beats.map(beat => beat.name === beatName ? {
+        axios.post("/api/beats", updateBeat)
+            .then(response => response.data)
+            .then((data) => {
+                updatedBeats = beats.map(beat => {
+                        if (beat.name === data.name) {
+                            return {...beat, pads: data.pads}
+                        } else {
+                            return beat
+                        }
+                    }
+                )
+                setBeats(updatedBeats)
+            })
+            .catch(e => console.error(e));
+    }
+
+    const indexBack = (soundName: string, beatName: string, padsState: boolean[]) => {
+
+        const beatState: BeatType[] = beats.map(beat => beat.name === beatName ? {
             ...beat,
             soundList: beat.soundList.map(sound => sound.name === soundName ? {
-               ...sound,
+                ...sound,
                 pads: sound.pads = padsState
             } : sound)
         } : beat);
@@ -42,7 +59,7 @@ export default function BeatsGallery() {
 
     return (
         <>
-            {beats.map(beat =>  <Beat key={beat.id} beat={beat}  indexBack={indexBack}/> )}
+            {beats.map(beat => <Beat key={beat.id} beat={beat} indexBack={indexBack} updateBeat={updateBeat}/>)}
         </>
     )
 }

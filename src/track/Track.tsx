@@ -1,5 +1,6 @@
 import {Sound} from "../beatsGallery/BeatsGallery";
 import {MutableRefObject, useRef} from "react";
+import "./track.css";
 
 export default function Track({soundList, bpm}: { soundList: Sound[], bpm: number }) {
 
@@ -29,15 +30,15 @@ export default function Track({soundList, bpm}: { soundList: Sound[], bpm: numbe
 
     return (
         <>
-            <div className="sound-pads" ref={soundPadsContainer}>
+            <div className={"track-controls"} ref={soundPadsContainer}>
                 <button
-                    className={"startButtonForBeat"}
+                    className={"button"}
                     onClick={() => playTrack(soundPadsContainer, soundList, bpm)}
-                >start
+                >&#9658;
                 </button>
-                <button className={"startButtonForBeat"} onClick={() => clearInterval(intervalID)}>Stop</button>
+                <button className={"button"} onClick={() => clearInterval(intervalID)}>&#10073; &#10073;</button>
                 {soundList.map((sound) =>
-                    <div key={sound.name}>
+                    <div className={"audio-div"} key={sound.name}>
                         <audio
                             data-name={sound.name}
                             className={"sound"}
