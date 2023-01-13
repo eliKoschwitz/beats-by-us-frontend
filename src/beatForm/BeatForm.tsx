@@ -3,6 +3,9 @@ import React, {useState} from "react";
 import {Sound} from "../beatsGallery/BeatsGallery";
 import "./beat-form.css"
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 export type NewBeatType = {
     "name": string;
@@ -11,6 +14,9 @@ export type NewBeatType = {
 }
 
 export default function BeatForm() {
+
+    const navigate = useNavigate()
+    const notify = () => toast.success("Speicherung war erfolgreich")
 
     const emptyBeat: NewBeatType = {
         name: "",
@@ -53,7 +59,11 @@ export default function BeatForm() {
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         axios.post("/api/beats", newBeat)
-            .then(response => response.data)
+            .then(response => {
+                if (response.status === 200){
+                    notify()
+                }
+            })
             .catch(e => console.error(e));
         e.preventDefault();
     }
@@ -66,7 +76,7 @@ export default function BeatForm() {
             <form onSubmit={onSubmit}>
                 <div className={"new-input"}>
                     <label htmlFor="title">Name: </label>
-                    <input id={"title"} type="text" name={"name"} value={newBeat.name} onChange={onChange}/>
+                    <input id={"title"} type="text" name={"name"} required={true} value={newBeat.name} onChange={onChange}/>
                 </div>
                 <div className="sound-pads">
                     {newBeat.soundList.map((sound, index) => {
@@ -79,7 +89,9 @@ export default function BeatForm() {
                     })}
                 </div>
                 <button className={"button"} type={"submit"}>Speichern</button>
+                <button className={"button"} onClick={() => navigate("/")}>Beat Übersicht</button>
             </form>
+            <ToastContainer position={"bottom-right"}/>
         </div>
     )
 }

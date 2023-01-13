@@ -34,4 +34,6 @@
 .new-beat .sound-pads {
     max-width: 50%;
     margin: 0 auto 2rem auto;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
