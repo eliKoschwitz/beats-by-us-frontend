@@ -27,7 +27,6 @@ export default function BeatsGallery() {
     }, []);
 
     async function updateBeat(updateBeat: BeatType) {
-
         let updatedBeats: BeatType[];
 
         axios.post("/api/beats", updateBeat)

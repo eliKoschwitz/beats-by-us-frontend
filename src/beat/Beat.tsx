@@ -5,11 +5,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {MutableRefObject, useRef} from "react";
 
-export default function Beat({
-     beat,
-     indexBack,
-    updateBeat
-} : {
+export default function Beat({beat, indexBack, updateBeat}: {
     beat: BeatType,
     indexBack: Function,
     updateBeat: (beat: BeatType) => void
@@ -49,7 +45,6 @@ export default function Beat({
         }, tempo);
     };
 
-
     const callBackIndex = (soundName: string, padsState: boolean[]) => {
         indexBack(soundName, beatName, padsState);
     }
@@ -64,9 +59,10 @@ export default function Beat({
                 }}
                 >Delete
                 </button>
-                <button className={"button"} onClick={() => {
-                    updateBeat(beat)
-                }}
+                <button className={"button"}
+                        onClick={() => {
+                            updateBeat(beat)
+                        }}
                 >Änderungen speichern
                 </button>
             </div>
