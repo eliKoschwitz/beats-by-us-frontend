@@ -18,7 +18,6 @@ export type Sound = {
 export default function BeatsGallery() {
 
     const [beats, setBeats] = useState<BeatType[]>([]);
-    const [updatedBeat, setUpdatedBeat] = useState<BeatType>();
 
     useEffect(() => {
         (async () => {
@@ -27,12 +26,11 @@ export default function BeatsGallery() {
         })();
     }, []);
 
-    async function updateBeat(beat: BeatType) {
+    async function updateBeat(updateBeat: BeatType) {
 
         let updatedBeats: BeatType[];
-        setUpdatedBeat(beat)
 
-        axios.post("/api/beats", updatedBeat)
+        axios.post("/api/beats", updateBeat)
             .then(response => response.data)
             .then((data) => {
                 updatedBeats = beats.map(beat => {
