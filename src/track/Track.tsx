@@ -32,11 +32,11 @@ export default function Track({soundList, bpm}: { soundList: Sound[], bpm: numbe
         <>
             <div className={"track-controls"} ref={soundPadsContainer}>
                 <button
-                    className={"button"}
+                    className={"controls-button"}
                     onClick={() => playTrack(soundPadsContainer, soundList, bpm)}
                 >&#9658;
                 </button>
-                <button className={"button"} onClick={() => clearInterval(intervalID)}>&#10073; &#10073;</button>
+                <button className={"controls-button"} onClick={() => clearInterval(intervalID)}>&#10073; &#10073;</button>
                 {soundList.map((sound) =>
                     <div className={"audio-div"} key={sound.name}>
                         <audio

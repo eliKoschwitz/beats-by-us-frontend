@@ -6,6 +6,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
+import TempoSlider from "../temposlider/TempoSlider";
 
 export type NewBeatType = {
     "name": string;
@@ -20,7 +21,7 @@ export default function BeatForm() {
 
     const emptyBeat: NewBeatType = {
         name: "",
-        tempo: 0,
+        tempo: 150,
         soundList: [
             {
                 name: "Hihat",
@@ -46,6 +47,7 @@ export default function BeatForm() {
         setNewBeat({
             ...newBeat, [targetName]: targetValue
         });
+        console.log(newBeat)
     }
 
     const getUpdatedSounds = (pads: boolean[], name: string) => {
@@ -78,6 +80,7 @@ export default function BeatForm() {
                     <label htmlFor="title">Name: </label>
                     <input id={"title"} type="text" name={"name"} required={true} value={newBeat.name} onChange={onChange}/>
                 </div>
+                <TempoSlider bpm={newBeat.tempo} onChange={onChange}/>
                 <div className="sound-pads">
                     {newBeat.soundList.map((sound, index) => {
                         return (
