@@ -2,23 +2,23 @@ import "./sound-pads.css";
 import {Sound} from "../BeatsGallery/BeatsGallery";
 
 
-export default function SoundPads(props:{key: number, sound:Sound, index:Function}){
+export default function SoundPads({sound, indexFunc}:{key: number, sound:Sound, indexFunc:Function}){
 
-    const soundName: string = props.sound.name;
+    const soundName: string = sound.name;
 
     const handleBoxClick = (index:number) => {
-        const padsState : boolean[] = props.sound.pads.map((pad, padIndex) => padIndex === index
+        const padsState : boolean[] = sound.pads.map((pad, padIndex) => padIndex === index
             ? !pad
             : pad
         );
-        props.index(index, soundName, padsState);
+        indexFunc(index, soundName, padsState);
     }
 
     return(
         <div>
-            {props.sound.pads.map((pad,index) => pad
-                ? <div key={index} className= {"pad sound-pad active b"+ index.toString()} onClick={() =>handleBoxClick(index)} > </div>
-                : <div key={index} className= {"pad sound-pad b"+ index.toString()} onClick={() => handleBoxClick(index)} ></div>)}
+            {sound.pads.map((pad,index2) => pad
+                ? <div key={index2} className= {"pad sound-pad active b"+ index2.toString()} onClick={() => handleBoxClick(index2)} > </div>
+                : <div key={index2} className= {"pad sound-pad b"+ index2.toString()} onClick={() => handleBoxClick(index2)} ></div>)}
         </div>
     )
 }

@@ -27,7 +27,7 @@ export default function BeatsGallery() {
         })();
     }, []);
 
-    const indexBack = (padIndex : number, soundName: string, beatName : string, padsState: boolean[]) => {
+    const indexBack = (soundName: string, beatName : string, padsState: boolean[]) => {
 
         const beatState:BeatType[] = beats.map(beat => beat.name === beatName ? {
             ...beat,
@@ -36,12 +36,6 @@ export default function BeatsGallery() {
                 pads: sound.pads = padsState
             } : sound)
         } : beat);
-
-    /*
-    pads: sound.pads.map((pad, index) => index === padIndex
-                    ? !pad
-                    : pad
-     */
         setBeats(beatState);
     }
 

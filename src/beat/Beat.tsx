@@ -3,7 +3,7 @@ import {BeatType, Sound} from "../BeatsGallery/BeatsGallery";
 import SoundPads from "../soundPads/SoundPads";
 import {MutableRefObject, useRef} from "react";
 
-export default function Beat(props: { beat: BeatType, indexBack: Function }) {
+export default function Beat({beat, indexBack}:{beat: BeatType, indexBack: Function}) {
 
     const soundPadsContainer: MutableRefObject<any> = useRef();
     let intervalID: NodeJS.Timer;
@@ -25,36 +25,35 @@ export default function Beat(props: { beat: BeatType, indexBack: Function }) {
 
             i++;
 
-            if (i > soundList.length - 1) {
-                //clearInterval(id);
+            if (i > soundList.length-1) {
                 i = 0;
             }
         }, tempo);
     };
 
-    const beatName = props.beat.name;
+    const beatName = beat.name;
 
-    const callBackIndex = (index: number, soundName: string, padsState: boolean[]) => {
-        props.indexBack(index, soundName, beatName, padsState);
+    const callBackIndex = (soundName: string, padsState: boolean[]) => {
+        indexBack(soundName, beatName, padsState);
     }
 
     return (
         <>
-            <h2 className={"beat-title"}>{props.beat.name}</h2>
+            <h2 className={"beat-title"}>{beat.name}</h2>
             <div className="track">
                 <div className="sound-pads" ref={soundPadsContainer}>
                     <button
                         className={"startButtonForBeat"}
-                        onClick={() => playTrack(soundPadsContainer, props.beat.soundList, bpm)}
+                        onClick={() => playTrack(soundPadsContainer, beat.soundList, bpm)}
                     >start
                     </button>
                     <button className={"startButtonForBeat"} onClick={() => clearInterval(intervalID)}>Stop</button>
 
-                    {props.beat.soundList.map((sound, index) => {
+                    {beat.soundList.map((sound, index) => {
                         return (
                             <div key={sound.name}>
                                 <p>{sound.name}</p>
-                                <SoundPads key={index} sound={sound} index={callBackIndex}/>
+                                <SoundPads key={index} sound={sound} indexFunc={callBackIndex}/>
                                 <audio
                                     data-name={sound.name}
                                     className={"sound"}

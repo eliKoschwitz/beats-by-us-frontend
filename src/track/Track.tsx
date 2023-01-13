@@ -9,7 +9,7 @@ export default function Track ({
     bpm: number
 }) {
     const [playIndex, setPlayIndex] = useState(0);
-    console.log()
+
     useEffect(() => {
         const id = setInterval(() => {
             setPlayIndex((playIndex) => playIndex > soundList.length - 1 ? 0 : playIndex + 1)
