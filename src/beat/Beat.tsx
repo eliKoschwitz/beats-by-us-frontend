@@ -46,7 +46,7 @@ export default function Beat({beat, indexBack, updateBeat}: {
             <div className="track">
                 <div className="sound-pads">
                     <Track soundList={beat.soundList} bpm={bpm}/>
-
+                    <div className={"sound-pads-container"}>
                     {beat.soundList.map((sound, index) => {
                         return (
                             <div key={sound.name}>
@@ -60,6 +60,7 @@ export default function Beat({beat, indexBack, updateBeat}: {
                             </div>
                         )
                     })}
+                    </div>
                 </div>
             </div>
         </>

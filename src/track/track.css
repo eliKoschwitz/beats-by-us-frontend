@@ -1,0 +1,10 @@
+.track-controls {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem 0;
+}
+
+.audio-div {
+    display: none;
+}

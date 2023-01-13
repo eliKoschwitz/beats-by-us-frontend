@@ -1,4 +1,3 @@
-import "./beats-gallery.css";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import Beat from "../beat/Beat";
