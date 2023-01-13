@@ -5,28 +5,29 @@ import {MutableRefObject, useRef} from "react";
 
 export default function Beat(props: { beat: BeatType, indexBack: Function }) {
 
-    const soundPadsContainer: MutableRefObject<any>= useRef();
+    const soundPadsContainer: MutableRefObject<any> = useRef();
+    let intervalID: NodeJS.Timer;
     let bpm = 40;
 
-    const playTrack= (
+    const playTrack = (
         soundPadsContainer: MutableRefObject<any>,
-        soundList:Sound[],
-        bpm:number
+        soundList: Sound[],
+        bpm: number
     ) => {
         let i: number = 0;
         const tempo = (60 / bpm) * 1000;
-        const id =setInterval(() => {
+        intervalID = setInterval(() => {
             soundList.forEach(sound => {
-                if (sound.pads[i] ) {
+                if (sound.pads[i]) {
                     soundPadsContainer.current.querySelector(`audio[data-name="${sound.name}"]`).play();
                 }
             });
 
             i++;
 
-            if(i>soundList.length-1) {
+            if (i > soundList.length - 1) {
                 //clearInterval(id);
-                i=0;
+                i = 0;
             }
         }, tempo);
     };
@@ -45,7 +46,9 @@ export default function Beat(props: { beat: BeatType, indexBack: Function }) {
                     <button
                         className={"startButtonForBeat"}
                         onClick={() => playTrack(soundPadsContainer, props.beat.soundList, bpm)}
-                    >start</button>
+                    >start
+                    </button>
+                    <button className={"startButtonForBeat"} onClick={() => clearInterval(intervalID)}>Stop</button>
 
                     {props.beat.soundList.map((sound, index) => {
                         return (
@@ -55,7 +58,7 @@ export default function Beat(props: { beat: BeatType, indexBack: Function }) {
                                 <audio
                                     data-name={sound.name}
                                     className={"sound"}
-                                    src={"/"+sound.name + ".wav"}
+                                    src={"/" + sound.name + ".wav"}
                                 />
                             </div>
                         )
